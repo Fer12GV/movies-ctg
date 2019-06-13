@@ -1,3 +1,7 @@
+import os
+
+from movies.settings import BASE_DIR
+
 DEBUG = True
 
 ALLOWED_HOSTS = ['*']
