@@ -46,3 +46,6 @@ class MovieFormExample(CreateView):
         kwargs = super(MovieFormExample, self).get_form_kwargs()
         kwargs.update({'user': self.request.user})
         return kwargs
+
+class MovieListView(ListView):
+    pass
