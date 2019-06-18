@@ -38,7 +38,8 @@ INSTALLED_APPS = [
     'debug_toolbar',
     'rest_framework',
 
-    'mdb'
+    'mdb',
+    'mdb.api',
 ]
 
 MIDDLEWARE = [
@@ -125,6 +126,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.PageNumberPagination',
     'PAGE_SIZE': 10
 }
+
+API_VERSION = 'v1'
 
 try:
     exec(open(os.path.join(BASE_DIR, 'movies', 'settings_local.py')).read())
