@@ -20,7 +20,8 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('mdb.urls'))
+    path('', include('mdb.urls')),
+    path(f'api/{settings.API_VERSION}/', include(('mdb.api.urls', 'mdb.api'), namespace='api-mdb')),
 ]
 
 if settings.DEBUG:

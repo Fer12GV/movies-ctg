@@ -1,0 +1,102 @@
+{
+	"info": {
+		"_postman_id": "07f41aa0-4c8d-4baf-91ba-87707c0f8b25",
+		"name": "MDB",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "List",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"id": "5051e99b-eb53-4bab-b7ac-d9466b18ef67",
+						"exec": [
+							"var jsonData = pm.response.json();",
+							"if(jsonData.data.length > 0){",
+							"    movierate = jsonData.data[0].pk;",
+							"    pm.environment.set(\"last_movie_rate\", movierate);",
+							"}",
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "{{host}}/api/v1/movie/",
+					"host": [
+						"{{host}}"
+					],
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "retrieve",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8000/api/v1/movie/{{last_movie_rate}}/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"{{last_movie_rate}}",
+						""
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Destroy",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"url": {
+					"raw": "localhost:8000/api/v1/movie/{{last_movie_rate}}/",
+					"host": [
+						"localhost"
+					],
+					"port": "8000",
+					"path": [
+						"api",
+						"v1",
+						"movie",
+						"{{last_movie_rate}}",
+						""
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

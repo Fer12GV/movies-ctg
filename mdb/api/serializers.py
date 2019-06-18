@@ -19,10 +19,14 @@ class MovieSerializer(serializers.Serializer):
 
 
 class MovieRateSerializer(serializers.ModelSerializer):
-    id = serializers.HyperlinkedIdentityField(view_name='drf-movierate-detail')
+    pk = serializers.IntegerField(source='id')
+    id = serializers.HyperlinkedIdentityField(view_name='api-mdb:movie-detail-actions')
     user = serializers.StringRelatedField()
-    movie = serializers.HyperlinkedRelatedField(read_only=True, view_name='drf-movie-detail', lookup_field='slug')
+    movie_link = serializers.HyperlinkedRelatedField(source='movie', read_only=True,
+                                                     view_name='drf-movie-detail',
+                                                     lookup_field='slug')
+    movie = MovieSerializer()
 
     class Meta:
         model = MovieRate
-        fields = ('movie', 'user', 'rate', 'id')
+        fields = ('movie', 'user', 'rate', 'id', 'movie_link', 'pk')
