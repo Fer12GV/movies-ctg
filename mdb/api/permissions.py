@@ -1,4 +1,5 @@
 from rest_framework.permissions import BasePermission
+from unittest import TestCase
 
 
 class IsAuthenticatedOrReadOnlyCustom(BasePermission):

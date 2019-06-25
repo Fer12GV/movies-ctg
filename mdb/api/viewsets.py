@@ -3,8 +3,8 @@ from rest_framework.decorators import action
 from rest_framework.permissions import DjangoModelPermissions
 from rest_framework.response import Response
 
+from mdb.api.pagination import CustomPagination
 from mdb.api.permissions import IsAuthenticatedOrReadOnlyCustom
-
 
 from mdb.api.serializers import MovieRateSerializer, MovieSerializer
 from mdb.models import MovieRate, Movie
@@ -22,11 +22,11 @@ class MovieViewset(viewsets.ModelViewSet):
         'default': MovieSerializer
     }
     permission_classes = [DjangoModelPermissions, ]
-
+    pagination_class = CustomPagination
 
     def get_serializer_class(self):
         return self.serializer_classes[self.action] if self.action in self.serializer_classes.keys() else \
-        self.serializer_classes['default']
+            self.serializer_classes['default']
 
     def get_serializer_context(self):
         context = super(MovieViewset, self).get_serializer_context()
